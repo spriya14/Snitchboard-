@@ -3,12 +3,9 @@ import logging
 import random
 import time
   
-# Configure logging
-logging.basicConfig(
-    filename='snitchboard-app.log',
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s'
-)
+# Configure logging to stdout
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
 
 log_levels=[logging.DEBUG, logging.INFO, logging.WARNING, logging.ERROR, logging.CRITICAL]    # Set the logging level
 
