@@ -30,7 +30,9 @@ This is a simple Python application that generates log messages and writes them 
 
 ```bash
 docker buildx build --platform linux/amd64 \
-  -t us-west1-docker.pkg.dev/robertb724-personal/apps/images/snitchboard:5.0 \
+  -t us-west1-docker.pkg.dev/robertb724-personal/apps/images/snitchboard:8.0 \
   . \
   --push
+
+Next Run kubectl apply -f deploy/
 
