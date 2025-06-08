@@ -1,11 +1,21 @@
 
 import logging
 import random
+import sys
 import time
   
 # Configure logging to stdout
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
+
+handler = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+handler.setFormatter(formatter)
+
+# Clear existing handlers and add our stdout handler
+if logger.hasHandlers():
+    logger.handlers.clear()
+logger.addHandler(handler)
 
 log_levels=[logging.DEBUG, logging.INFO, logging.WARNING, logging.ERROR, logging.CRITICAL]    # Set the logging level
 

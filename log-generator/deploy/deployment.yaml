@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spbatson-snitchboard-deployment
+  labels:
+    app: snitchboard
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: snitchboard
+  template:
+    metadata:
+      labels:
+        app: snitchboard
+    spec:
+      containers:
+        - name: spbatson-snitchboard
+          image: us-west1-docker.pkg.dev/robertb724-personal/apps/images/snitchboard:9.0
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
