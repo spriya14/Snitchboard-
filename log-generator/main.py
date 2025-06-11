@@ -1,8 +1,17 @@
 
+from prometheus_client import start_http_server, Counter, Histogram
 import logging
 import random
 import sys
 import time
+
+#defining metrics for prometheus
+# --- Define metrics ---
+# Metrics
+LOG_COUNTER = Counter("snitchboard_logs_total", "Total logs emitted", ["level"])
+
+# --- Start Prometheus metrics server on port 8000 ---
+start_http_server(8001)
   
 # Configure logging to stdout
 logger = logging.getLogger()
@@ -46,6 +55,8 @@ def log_generator():
         message = random.choice(sample_messages)  # Randomly select a message
         logging.log(log_levl, message)  
         time.sleep(random.uniform(0.5, 2))
+        # Increment the Prometheus counter for the log level
+        LOG_COUNTER.labels(level=logging.getLevelName(log_levl)).inc()
 
 if __name__ == "__main__":
     print("Starting log generator...")
