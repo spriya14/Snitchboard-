@@ -50,13 +50,16 @@ def log_generator():
     """
     Function to generate log messages at different levels.
     """
-    while True:
-        log_levl = random.choice(log_levels)  # Randomly select a log level
-        message = random.choice(sample_messages)  # Randomly select a message
-        logging.log(log_levl, message)  
-        time.sleep(random.uniform(0.5, 2))
-        # Increment the Prometheus counter for the log level
-        LOG_COUNTER.labels(level=logging.getLevelName(log_levl)).inc()
+    try:
+        while True:
+            log_levl = random.choice(log_levels)  # Randomly select a log level
+            message = random.choice(sample_messages)  # Randomly select a message
+            logging.log(log_levl, message)  
+            time.sleep(random.uniform(0.5, 2))
+            # Increment the Prometheus counter for the log level
+            LOG_COUNTER.labels(level=logging.getLevelName(log_levl)).inc()
+    except KeyboardInterrupt:
+        print("Log generation stopped.")
 
 if __name__ == "__main__":
     print("Starting log generator...")
