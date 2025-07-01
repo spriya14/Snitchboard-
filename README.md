@@ -36,3 +36,7 @@ docker buildx build --platform linux/amd64 \
 
 Next Run kubectl apply -f deploy/
 
+
+##Setup
+Create a virtual env using command "python -m venv .venv"
+

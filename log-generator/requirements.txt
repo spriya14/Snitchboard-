@@ -2,3 +2,6 @@ python-json-logger
 uvicorn==0.27.0
 requests==2.31.0
 prometheus_client==0.18.0
+fastapi
+sqlalchemy
+aiosqlite
